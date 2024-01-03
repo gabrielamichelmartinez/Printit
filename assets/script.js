@@ -23,11 +23,11 @@ const leftArrow = document.querySelector(".arrow_left");
 const rightArrow = document.querySelector(".arrow_right");
 const dots = document.querySelectorAll(".dot");
 const bannerText = banner.querySelector("p");
-const bannerSlide = document.getElementById("banner");
+const bannerSlide = document.getElementById("banner-img");
 
 let currentSlide = 0; // Track le slide en cours de visionnage
 
-updateActiveDot() // Selectionne le premier bullet point au chargement de la page
+updateActiveDot() // Premier point du carroussel actif au chargement de la page
 
 
 // Écouteurs d'événements boutons au clic
@@ -38,6 +38,8 @@ rightArrow.addEventListener('click', showNextSlide);
 
 /* Fonctions */
 
+// fonction met à jour la position du point du caroussel en fonction des slides
+
 function updateActiveDot() {
 	dots.forEach((dot, index) => {
 		dot.classList.remove("dot_selected");
@@ -46,13 +48,12 @@ function updateActiveDot() {
 		}
 	});
 }
-/* "forEach" goes through each bullet point and removes the "dot_selected" class.
-"dot_selected" class is added only to the bullet point corresponding to the current slide. */
 
-// fonction du caroussel mise à jour d'image + textes ne fonction du clic sur le flèches
+// fonction du caroussel met à jour l'image en fond + textes en fonction du clic sur les flèches
 
 function showNextSlide() {
 	currentSlide = (currentSlide + 1) % slides.length; 
+	console.log ("./assets/images/slideshow/" + slides[currentSlide].image);
 	bannerSlide.src = "./assets/images/slideshow/" + slides[currentSlide].image;
 	bannerText.innerHTML = slides[currentSlide].tagLine;
 	updateActiveDot();
